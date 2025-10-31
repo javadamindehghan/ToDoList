@@ -20,7 +20,7 @@ interface FormProps {
   initialValues?: FormData;
 }
 
-const FormEdit: React.FC<FormProps> = ({ id , initialValues }: FormProps) => {
+const FormEdit: React.FC<FormProps> = ({ id, initialValues }: FormProps) => {
   const { editList, count } = useAddList();
   const {
     register,
@@ -31,12 +31,11 @@ const FormEdit: React.FC<FormProps> = ({ id , initialValues }: FormProps) => {
     defaultValues: initialValues || { title: "", subtitle: "" },
   });
 
-
   const onSubmit = (data: FormData) => {
     if (id) {
-       editList(id , { ...data  });
+      editList(id, { ...data });
     }
-   
+
     localStorage.setItem(
       "List",
       JSON.stringify(

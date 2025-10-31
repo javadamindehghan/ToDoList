@@ -3,7 +3,6 @@ import { useAddList } from "../store/List";
 import FormEdit from "./FormEdit";
 import Modal from "./Modal";
 
-
 interface List {
   title: string;
   subtitle: string;
@@ -33,9 +32,9 @@ const ListTable: React.FC<ListTableProps> = () => {
         onClose={closeEditModal}
         title=" فرم ویرایش"
       >
-        {currentItem &&currentItem.id && (
+        {currentItem && currentItem.id && (
           <FormEdit
-            id ={currentItem?.id?currentItem?.id:0} 
+            id={currentItem?.id ? currentItem?.id : 0}
             initialValues={{
               title: currentItem.title,
               subtitle: currentItem.subtitle,
