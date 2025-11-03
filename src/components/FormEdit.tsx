@@ -4,21 +4,11 @@ import * as yup from "yup";
 import { useAddList } from "../store/List";
 import { showToastMessage } from "./../hook/ShowToastMessage ";
 import { ToastContainer } from "react-toastify";
-
+import type { newDataProps, FormProps } from "../type/Type";
 const schema = yup.object().shape({
   title: yup.string().required("عنوان الزامی است"),
   subtitle: yup.string().required("توضیحات الزامی است"),
 });
-
-interface FormData {
-  title: string;
-  subtitle: string;
-}
-
-interface FormProps {
-  id?: number;
-  initialValues?: FormData;
-}
 
 const FormEdit: React.FC<FormProps> = ({ id, initialValues }: FormProps) => {
   const { editList, count } = useAddList();
@@ -26,12 +16,12 @@ const FormEdit: React.FC<FormProps> = ({ id, initialValues }: FormProps) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<newDataProps>({
     resolver: yupResolver(schema),
     defaultValues: initialValues || { title: "", subtitle: "" },
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: newDataProps) => {
     if (id) {
       editList(id, { ...data });
     }

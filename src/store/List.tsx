@@ -1,17 +1,6 @@
 import { create } from "zustand";
+import type {List ,ShowList ,newDataProps} from '../type/Type'
 
-interface List {
-  title: string;
-  subtitle: string;
-  date: string;
-  id: number;
-}
-interface newDataProps {
-  title: string;
-  subtitle: string;
-}
-
-type ShowList = List[];
 
 type Store = {
   count: ShowList;

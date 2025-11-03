@@ -2,18 +2,9 @@ import { useState } from "react";
 import { useAddList } from "../store/List";
 import FormEdit from "./FormEdit";
 import Modal from "./Modal";
+import type { List, ShowList } from "../type/Type";
 
-interface List {
-  title: string;
-  subtitle: string;
-  date: string;
-  id: number;
-}
-interface ListTableProps {
-  count: List[];
-}
-
-const ListTable: React.FC<ListTableProps> = () => {
+const ListTable: React.FC<ShowList> = () => {
   const { count, deleteList } = useAddList();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState<List>();

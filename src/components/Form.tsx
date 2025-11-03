@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useAddList } from "../store/List";
 import { showToastMessage } from "./../hook/ShowToastMessage ";
 import { ToastContainer } from "react-toastify";
-
+import type { newDataProps, FormProps } from "../type/Type";
 const schema = yup.object().shape({
   title: yup.string().required("عنوان الزامی است"),
   subtitle: yup.string().required("توضیحات الزامی است"),
@@ -21,16 +21,6 @@ function formatDate(date: Date): string {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-interface FormData {
-  title: string;
-  subtitle: string;
-}
-
-interface FormProps {
-  id?: number | null;
-  initialValues?: FormData;
-}
-
 const Form: React.FC<FormProps> = () => {
   const { addList, count } = useAddList();
   const {
@@ -38,11 +28,11 @@ const Form: React.FC<FormProps> = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+  } = useForm<newDataProps>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: newDataProps) => {
     console.log("Title:", data.title);
     console.log("Subtitle:", data.subtitle);
     const id = new Date().getTime();
